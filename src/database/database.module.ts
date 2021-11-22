@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
+import { MongooseModule, MongooseModuleOptions } from '@nestjs/mongoose';
 import { ConfigService } from "@nestjs/config";
 import { MongoDatabaseConfig } from "../config/database.config";
 
@@ -10,7 +10,7 @@ import { MongoDatabaseConfig } from "../config/database.config";
       useFactory: async (configService: ConfigService) => {
         let config = configService.get<MongoDatabaseConfig>('database.mongo');
 
-        return {
+        return <MongooseModuleOptions>{
           uri: `mongodb://${config.host}:${config.port}`,
           dbName: config.database,
           user: config.user,
@@ -25,4 +25,5 @@ import { MongoDatabaseConfig } from "../config/database.config";
 })
 
 export class DatabaseModule {
+  //
 }
