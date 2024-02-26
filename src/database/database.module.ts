@@ -11,7 +11,7 @@ import { MongoDatabaseConfig } from "../config/database.config";
         let config = configService.get<MongoDatabaseConfig>('database.mongo');
 
         return <MongooseModuleOptions>{
-          uri: `mongodb://${config.host}:${config.port}`,
+          uri: config.uri,
           dbName: config.database,
           user: config.user,
           pass: config.password,
