@@ -8,7 +8,7 @@ import { MongoDatabaseConfig } from "../config/database.config";
     MongooseModule.forRootAsync({
       imports: [],
       useFactory: async (configService: ConfigService) => {
-        let config = configService.get<MongoDatabaseConfig>('database.mongo');
+        let config = configService.get('database.mongo');
 
         return <MongooseModuleOptions>{
           uri: config.uri,
